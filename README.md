@@ -61,4 +61,6 @@ Open NEON-FLORA-DASH.html in your favorite modern web browser (Chrome, Firefox, 
 📝 Credits
 Developed by AI and Lorenzo Grillo.
 
+Take a look of the AI teaser
+
 If you enjoy the game, feel free to leave a ⭐ on this repository
