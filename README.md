@@ -1,7 +1,6 @@
-🌸 Neon Flora Dash 🚀
+
 Neon Flora Dash is a fast-paced, feature-rich sci-fi endless runner built entirely with HTML5 Canvas and Vanilla JavaScript. Pilot your customizable spacecraft through treacherous cosmic zones, dodge moving obstacles, survive meteor showers, and defeat deadly bosses!
 
-Play the game live here: (Insert your GitHub Pages link here, e.g., https://yourusername.github.io/neon-flora-dash/)
 
 ✨ Features
 Dynamic Environments: Fly through distinct zones like the Nebula, Asteroid Belt, Ionosphere, and Deep Void. Each zone introduces unique hazards, from dynamic wind currents to visual fog.
