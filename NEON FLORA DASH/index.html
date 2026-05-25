@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NEON FLORA DASH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div id="fade-overlay"></div>
+
+  <div id="loading-screen">
+    <div class="loading-logo">NEON FLORA DASH</div>
+    <h2>LOADING...</h2>
+    <div class="loading-bar-wrap"><div class="loading-bar-fill" id="loading-bar"></div></div>
+    <div id="loading-pct">0%</div>
+  </div>
+
+  <div id="hud" class="hidden">
+    <div id="hud-left">
+      <div class="hud-chip">
+        <div id="hud-score">SCORE: 0</div>
+        <div id="hud-zone">ZONE: NEBULA</div>
+        <div id="hud-speed">SPD: 340</div>
+        <div id="hud-wind" class="hidden" style="font-size:.58rem;color:#b388ff;letter-spacing:2px;text-shadow:0 0 6px #b388ff88;margin-top:1px;">↓ ION CURRENT</div>
+        <div id="hud-ability" class="hidden" style="font-size:.58rem;color:#00e5ff;letter-spacing:2px;margin-top:1px;"></div>
+        <div id="hud-combo" class="hidden">COMBO x2</div>
+        <div id="hud-challenge" class="hidden">CHALLENGE</div>
+        <div id="hud-boss" class="hidden">⚠ BOSS</div>
+      </div>
+    </div>
+    <div id="hud-coins" class="hud-chip">● 0</div>
+    <div id="hud-pu">
+      <div class="pu-icon-wrap" id="pu-wrap" style="display:none">
+        <svg viewBox="0 0 44 44">
+          <circle class="pu-arc-bg" cx="22" cy="22" r="19"/>
+          <circle class="pu-arc" id="pu-arc" cx="22" cy="22" r="19" stroke-dasharray="119.4" stroke-dashoffset="0"/>
+        </svg>
+        <div class="pu-emoji" id="pu-emoji">🛡</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="ui-menu" class="overlay" role="dialog">
+    <h1 id="title-text" class="game-title">NEON FLORA DASH</h1>
+    <p class="subtitle">PRO EDITION</p>
+    <div class="hi-score-box">
+      HI-SCORE: <span id="hi-score-display">0</span>
+      &nbsp;|&nbsp; 🪙 <span id="coin-total-display">0</span>
+    </div>
+    <div id="menu-daily-badge" class="menu-daily-badge hidden"></div>
+    <div class="char-section">
+      <div class="char-label">CHOOSE YOUR SHIP</div>
+      <div class="char-grid" id="char-grid"></div>
+    </div>
+    <div class="menu-btn-row">
+      <button id="daily-button" class="btn sm ghost">📋 DAILY</button>
+      <button id="shop-button" class="btn sm ghost">🛒 SHOP</button>
+      <button id="lb-button" class="btn sm ghost">🏆 TOP 5</button>
+      <button id="ach-button" class="btn sm ghost">★ TROPHIES</button>
+      <button id="challenge-button" class="btn sm ghost">⚡ CHALLENGES</button>
+      <button id="stats-button" class="btn sm ghost">📊 STATS</button>
+      <button id="settings-menu-button" class="btn sm ghost">⚙ SETTINGS</button>
+      <button id="credits-button" class="btn sm ghost">ℹ CREDITS</button>
+    </div>
+    <button id="start-button" class="btn">LAUNCH 🚀</button>
+  </div>
+
+  <div id="ui-shop" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">GALACTIC SHOP</div>
+      <div class="ret-sub">Upgrade your loadout</div>
+      <div class="ret-coins">🪙 <span id="shop-coins">0</span> coins</div>
+      <div class="ret-list" id="shop-list"></div>
+      <button id="shop-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-leaderboard" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">LOCAL LEADERBOARD</div>
+      <div class="ret-sub">Top 5 pilots on this device</div>
+      <input id="pilot-name" class="name-input" maxlength="12" placeholder="PILOT NAME" />
+      <div class="ret-list" id="lb-list"></div>
+      <button id="lb-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-challenges" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">CHALLENGE MODES</div>
+      <div class="ret-sub">Special objectives — coin rewards</div>
+      <div class="ret-list" id="challenge-list"></div>
+      <button id="challenge-start" class="btn">START CHALLENGE 🚀</button>
+      <button id="challenge-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-victory" class="overlay hidden" role="dialog">
+    <div class="go-crash">MISSION COMPLETE!</div>
+    <div class="victory-sub" id="victory-desc">Challenge completed</div>
+    <div class="go-stats" style="margin-bottom:18px">
+      <div class="go-stat">
+        <div class="go-stat-icon">🪙</div>
+        <div class="go-stat-label">REWARD</div>
+        <div class="go-stat-value highlight" id="victory-reward">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">🏆</div>
+        <div class="go-stat-label">SCORE</div>
+        <div class="go-stat-value" id="victory-score">0</div>
+      </div>
+    </div>
+    <div class="go-btns">
+      <button class="btn" id="victory-retry">↺ RETRY</button>
+      <button class="btn danger" id="victory-menu">☰ MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-gameover" class="overlay" role="dialog" aria-live="assertive">
+    <div class="go-crash">CRASH!</div>
+    <div class="go-record-badge hidden" id="go-new-record">★ NEW RECORD ★</div>
+    <div id="go-death-reason" style="margin-bottom:12px;font-size:.78rem;color:#ff6b6b;letter-spacing:2px;text-shadow:0 0 8px #ff444466;min-height:18px"></div>
+
+    <div class="go-stats">
+      <div class="go-stat">
+        <div class="go-stat-icon">🏆</div>
+        <div class="go-stat-label">SCORE</div>
+        <div class="go-stat-value" id="go-score">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">⭐</div>
+        <div class="go-stat-label">BEST</div>
+        <div class="go-stat-value highlight" id="go-hiscore">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">🪙</div>
+        <div class="go-stat-label">COINS</div>
+        <div class="go-stat-value" id="go-coins">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">🚧</div>
+        <div class="go-stat-label">OBSTACLES</div>
+        <div class="go-stat-value" id="go-obstacles">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">⚡</div>
+        <div class="go-stat-label">TOP SPEED</div>
+        <div class="go-stat-value" id="go-speed">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">🛡</div>
+        <div class="go-stat-label">POWER-UPS</div>
+        <div class="go-stat-value" id="go-powerups">0</div>
+      </div>
+      <div class="go-stat">
+        <div class="go-stat-icon">🔥</div>
+        <div class="go-stat-label">MAX COMBO</div>
+        <div class="go-stat-value" id="go-combo">0</div>
+      </div>
+    </div>
+
+    <div class="go-record-bar-wrap">
+      <div class="go-record-label">
+        <span>RECORD PROGRESS</span>
+        <span id="go-record-pct">0%</span>
+      </div>
+      <div class="go-record-bg">
+        <div class="go-record-fill" id="go-record-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="go-btns">
+      <button class="btn danger" id="retry-button">↺ RETRY</button>
+      <button class="btn" id="menu-button">☰ MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-pause" class="overlay" role="dialog">
+    <div class="pause-title">PAUSED</div>
+    <div class="pause-sub">tap to continue</div>
+  </div>
+
+  <div id="ui-daily" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">DAILY MISSIONS</div>
+      <div class="ret-sub">Resets every day — earn bonus coins</div>
+      <div class="ret-list" id="daily-list"></div>
+      <button id="daily-claim" class="btn">CLAIM REWARD</button>
+      <button id="daily-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-achievements" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">TROPHIES</div>
+      <div class="ret-sub">Lifetime milestones</div>
+      <div class="ret-list" id="ach-list"></div>
+      <button id="ach-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-settings" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">SETTINGS</div>
+      <div class="ret-sub">Gameplay & accessibility</div>
+      <div id="settings-list"></div>
+      <button id="settings-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-stats" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">PILOT STATS</div>
+      <div class="ret-sub">Lifetime progress on this device</div>
+      <div class="stat-grid" id="stats-grid"></div>
+      <button id="stats-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="ui-credits" class="overlay hidden" role="dialog">
+    <div class="ret-panel">
+      <div class="ret-title">CREDITS</div>
+      <div class="credits-box" id="credits-body">
+        <strong>NEON FLORA DASH</strong>
+        School project — HTML5 Canvas game<br><br>
+        <span id="credits-student">Student: Lorenzo Grillo</span><br>
+        <span id="credits-class">Class / Year: 2026</span><br><br>
+        Built with JavaScript, Canvas 2D, Web Audio API.<br>
+        AI tools used for iteration & UI polish.<br><br>
+        © 2026 — All assets procedurally drawn if missing.
+      </div>
+      <button id="credits-back" class="btn ghost ret-back">← MENU</button>
+    </div>
+  </div>
+
+  <div id="zone-banner"></div>
+  <div id="screen-vignette"></div>
+
+  <div id="tutorial-overlay" class="hidden">
+    <div class="tutorial-box">
+      <div class="tutorial-step" id="tutorial-step">STEP 1/3</div>
+      <div class="tutorial-text" id="tutorial-text">Hold to fly up</div>
+    </div>
+  </div>
+
+  <button id="audio-btn" title="Audio on/off">🔊</button>
+  <button id="settings-btn" class="hidden" title="Quick settings">⚙</button>
+  <canvas id="gameCanvas"></canvas>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
