@@ -443,7 +443,7 @@ const Audio = (() => {
   let engineOsc=null, engineGain=null, engineFilter=null;
   let currentMusicVol = 0.05;
 
-  const thrustSound = new window.Audio('assets/spinta.mp3');
+  const thrustSound = new window.Audio('spinta.mp3');
   thrustSound.volume = 0.4; // Regola il volume da 0.0 a 1.0
 
   function init(){ if(ctx)return; ctx=new(window.AudioContext||window.webkitAudioContext)(); }
@@ -670,9 +670,9 @@ const Assets = {
     const check=()=>{this.loaded++;const p=Math.round(this.loaded/this.total*100);bar.style.width=p+'%';pct.textContent=p+'%';if(this.loaded===this.total){this.ready=true;setTimeout(onReady,300);}};
     const fail=(img)=>{console.warn('Asset mancante:',img.src);check();};
     [this.bg,this.obstacle,this.rocket,this.ufo,this.shuttle,this.dragon].forEach(img=>{img.onload=check;img.onerror=()=>fail(img);});
-    this.bg.src='assets/sfondo.png';this.obstacle.src='assets/ostacolo.png';
-    this.rocket.src='assets/rocket.png';this.ufo.src='assets/ufo.png';
-    this.shuttle.src='assets/shuttle.png';this.dragon.src='assets/dragon.png';
+    this.bg.src='sfondo.png';this.obstacle.src='ostacolo.png';
+    this.rocket.src='rocket.png';this.ufo.src='ufo.png';
+    this.shuttle.src='shuttle.png';this.dragon.src='dragon.png';
   },
   draw(img,cx,x,y,w,h){if(img.complete&&img.naturalWidth>0){cx.drawImage(img,Math.floor(x),Math.floor(y),w,h);return true;}return false;}
 };
