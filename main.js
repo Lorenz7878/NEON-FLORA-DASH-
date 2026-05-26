@@ -443,7 +443,7 @@ const Audio = (() => {
   let engineOsc=null, engineGain=null, engineFilter=null;
   let currentMusicVol = 0.05;
 
-  const thrustSound = new window.Audio('spinta.mp3');
+  const thrustSound = new window.Audio('.assets/spinta.mp3');
   thrustSound.volume = 0.4; // Regola il volume da 0.0 a 1.0
 
   function init(){ if(ctx)return; ctx=new(window.AudioContext||window.webkitAudioContext)(); }
