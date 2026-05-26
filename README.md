@@ -58,6 +58,8 @@ Bash
 cd neon-flora-dash
 Open NEON-FLORA-DASH.html in your favorite modern web browser (Chrome, Firefox, Edge, Safari).
 
+Or simply open the file index.html.
+
 📝 Credits
 Developed by AI and Lorenzo Grillo.
 
