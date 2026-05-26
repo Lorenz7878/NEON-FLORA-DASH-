@@ -4,12 +4,12 @@
 // ═══════════════════════════════════════════════
 const CFG = {
   baseSpeed:340, gravity:1100, thrustPower:-2600,
-  maxFall:600, maxRise:-500, spawnRate:1.65, gapSize:210,
+  maxFall:600, maxRise:-500, spawnRate:1, gapSize:250,
   hitRadiusFactor:0.28, maxPart:350, maxObs:24, maxCoins:40,
-  obstacleWidth:58, explosionParticles:55,
+  obstacleWidth:100, explosionParticles:55,
   speedIncreaseInterval:80, speedIncreaseAmount:20, scorePerObstacle:10,
   shakeIntensity:16, shakeDecay:55, minObstacleHeight:65,
-  playerW:64, playerH:48, playerXFrac:0.15,
+  playerW:120, playerH:104, playerXFrac:0.15,
   coinR:10, coinValue:5, coinSpawnChance:0.6, coinsPerGap:4,
   powerupSpawnChance:0.25, starCount:160,
   trailLength:28, trailSpacing:3,
@@ -296,7 +296,7 @@ const Boss={
       showScorePop('⚠ PHASE 2!',canvas.width*0.5,canvas.height*0.3,false,true);
       spawnExplosion(canvas.width*0.5,canvas.height*0.5);
     }
-    const rate=this.phase2Active?Math.max(0.3,0.65-Zones.idx*0.08):Math.max(0.45,0.85-Zones.idx*0.1);
+    const rate=this.phase2Active?Math.max(1,1.4-Zones.idx*0.05):Math.max(1,1.4-Zones.idx*0.5);
     if(G.boss.spawnTimer<=0){G.boss.spawnTimer=rate;spawnBossPair();}
     // laser: fase 1 ogni ~4s zone avanzate, fase 2 ogni ~2.2s ovunque
     const laserChance=this.phase2Active?0.018:0.008;
