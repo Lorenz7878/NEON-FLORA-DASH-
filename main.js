@@ -4,12 +4,12 @@
 // ═══════════════════════════════════════════════
 const CFG = {
   baseSpeed:340, gravity:1100, thrustPower:-2600,
-  maxFall:600, maxRise:-500, spawnRate:1.65, gapSize:210,
+  maxFall:600, maxRise:-500, spawnRate:0.9, gapSize:250,
   hitRadiusFactor:0.28, maxPart:200, maxObs:24, maxCoins:40,
-  obstacleWidth:58, explosionParticles:40,
+  obstacleWidth:90, explosionParticles:40,
   speedIncreaseInterval:80, speedIncreaseAmount:20, scorePerObstacle:10,
   shakeIntensity:16, shakeDecay:55, minObstacleHeight:65,
-  playerW:64, playerH:48, playerXFrac:0.15,
+  playerW:100, playerH:84, playerXFrac:0.15,
   coinR:10, coinValue:5, coinSpawnChance:0.6, coinsPerGap:4,
   powerupSpawnChance:0.25, starCount:120,
   trailLength:18, trailSpacing:4,
